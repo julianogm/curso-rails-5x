@@ -1,24 +1,32 @@
-# README
+configuração da aplicação feita para aplicar testes
+curso no link a seguir:
+https://www.udemy.com/course/rubyonrails-5x/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+rodar no prompt:
+yarn # instalar caso falte
+bundle install
 
-Things you may want to cover:
+sudo apt-get update
+sudo apt-get install default-jdk
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.3.0-amd64.deb
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.3.0-amd64.deb.sha512
+shasum -a 512 -c elasticsearch-7.3.0-amd64.deb.sha512 
+sudo dpkg -i elasticsearch-7.3.0-amd64.deb
 
-* Ruby version
+ps -p 1
+#caso systemd
+sudo systemctl start elasticsearch.service
+#caso init
+sudo -i service elasticsearch start
 
-* System dependencies
+sudo vim /etc/elasticsearch/elasticsearch.yml
+#alterar no editor
+network.host: 0.0.0.0   
+cluster.initial_master_nodes: ["node-1"]
+#ao final digitar :wq
 
-* Configuration
+sudo systemctl restart elasticsearch.service
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#finalizar com
+rake dev:setup
